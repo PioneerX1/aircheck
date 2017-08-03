@@ -3,9 +3,9 @@ var AirCheck = require('./../js/aircheck.js').airCheckModule;
 var getStats = function(response) {
   $('#output-city').text(response.data.city);
   $('#output-state').text(response.data.state);
-  $('#aqius').text(response.pollution.aqius);
+  $('#aqius').text(response.data.current.pollution.aqius);
 
-  var aqius = response.pollution.aqius;
+  var aqius = parseInt(response.data.current.pollution.aqius);
   var rating = getRating(aqius);
   $('#rating').text(rating);
 
@@ -22,7 +22,7 @@ var getRating = function(aqius) {
     return "Unhealthy";
   } else if (aqius < 301) {
     return "Very Unhealthy";
-  } else if {
+  } else {
     return "Hazardous";
   }
 };
